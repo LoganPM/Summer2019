@@ -9,12 +9,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Site Metas -->
-    <title>bubbleT - Canadian Public Sector Salary Information</title>
+    <title>GM's Best Friend</title>
     <meta name="keywords" content="" />
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-
+	
     <!--JQuery and Bootstrap-->
     <script
       type="text/javascript"
@@ -23,16 +23,6 @@
     <link rel="stylesheet" href="bootstrap_custom.css" />
     <script src="./js/jquery.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
-
-    <!-- icons -->
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
-      crossorigin="anonymous"
-    />
-
-    <link rel="icon" type="image/png" sizes="32x32" href="./favicon.ico" />
 
     <!--Chart.js CDN-->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
@@ -67,7 +57,6 @@
 </head>
   <body>
     <nav class="navbar bg-light navbar-expand-lg fixed-top shadow">
-      <a class="navbar-brand p-0" href="index.html"><img src="./assets/logo.png" alt="bubbleT"/></a>
       <button
         class="navbar-toggler"
         type="button"
@@ -92,77 +81,7 @@
       <div class="row">
         <nav class="col-md-2 d-none d-md-block bg-lightish sidebar">
           <div class="sidebar-sticky">
-            <h4>Filters</h4>
-            <form id="filter-form">
-              <div class="form-group">
-                <div><label for="filter-province">Province</label></div>
-                <div class="select-box">
-                  <select id="filter-province" class="form-control">
-                    <option>Ontario</option>
-                  </select>
-                </div>
-              </div>
-              <div class="form-group">
-                <div><label for="filter-year">Year</label></div>
-                <div class="select-box">
-                  <select id="filter-year" class="form-control" multiple="multiple">
-                    <option selected>2013</option>
-                    <option>2012</option>
-                    <option>2011</option>
-                    <option>2010</option>
-                  </select>
-                </div>
-              </div>
-              <div class="form-group">
-                <div><label for="filter-sector">Sector</label></div>
-                <div class="select-box">
-                  <select id="filter-sector" class="form-control" multiple="multiple">
-                    <option>Universities</option>
-                    <option>Colleges</option>
-                    <option>School Boards</option>
-                    <option value="Hospitals and Boards of Public Health">Hospitals</option>
-                    <option value="Municipalities and Services">Municipal</option>
-                    <option value="Government of Ontario - Legislative Assembly and Offices">Gov. Legislative</option>
-                    <option value="Government of Ontario - Judiciary">Gov. Judiciary</option>
-                    <option value="Government of Ontario - Ministries">Gov. Ministries</option>
-                    <option value="Other Public Sector Employers">Other</option>
-                  </select>
-                </div>
-              </div>
-              <div class="form-group">
-                <label>Salary Range</label>
-                <div class="form-group row ml-2">
-                  <label for="min-salary" class="col-sm-2 col-form-label text-dark">Min</label>
-                  <div class="col-sm-10">
-                    <input type="email" class="form-control" id="min-salary" type="number" min="0">
-                  </div>
-                </div>
-                <div class="form-group row ml-2">
-                  <label for="max-salary" class="col-sm-2 col-form-label text-dark">Max</label>
-                  <div class="col-sm-10">
-                    <input type="email" class="form-control" id="max-salary" type="number" min="0">
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="filter-employer">Employer</label>
-                <input type="text" class="form-control" id="filter-employer">
-              </div>
-              <div class="form-group">
-                <label for="filter-fname">First Name</label>
-                <input type="text" class="form-control" id="filter-fname">
-              </div>
-              <div class="form-group">
-                <label for="filter-lname">Last Name</label>
-                <input type="text" class="form-control" id="filter-lname">
-              </div>
-
-              <div class="form-group">
-                <button id="filter-button"  class="btn btn-secondary w-100">
-                  Update Filters <i class="fas fa-exclamation-triangle" style="display:none"></i>
-                </button>
-              </div>
-            </form>
+            
           </div>
         </nav>
         <!-- end filter menu -->
@@ -177,20 +96,7 @@
             >
               <div id="table-menu" class="row mb-2">
                 <div class="col-8" id="alert-section">
-                  
-                </div>
-                <div class="col-4" style="margin: auto;">
-                  <button
-                    disabled
-                    class="btn btn-secondary"
-                    data-toggle="collapse"
-                    href="#sorting-options"
-                    role="button"
-                    style="width: 100%;"
-                    aria-expanded="false"
-                    aria-controls="sorting-options"
-                    >Sorting Options <i class="fas fa-cog"></i
-                  ></button>
+       
                 </div>
               </div>
               <!-- end table menu -->
@@ -494,71 +400,7 @@
 
         <nav class="col-md-2 d-none d-md-block bg-lightish sidebar">
           <div class="sidebar-sticky">
-            <a href="#" id="downloadSalaryButton" class="btn btn-lg btn-primary w-100"
-              ><span>Download <i class="fas fa-download"></i></span
-            ></a>
-            <div id="download-options" style="display: flex; justify-content: space-around; padding: 10px 0;">
-                <button id="download-csv" class="btn btn-secondary btn-sm">CSV</button>
-                <button id="download-json" class="btn btn-secondary btn-sm">JSON</button>
-                <button id="download-png" class="btn btn-secondary btn-sm">PNG</button>
-                <button id="download-pdf" class="btn btn-secondary btn-sm">PDF</button>
-            </div>
-            <hr />
-            <nav
-              class="nav nav-pills nav-fill flex-column"
-              id="view-type"
-              role="tablist"
-              aria-orientation="vertical"
-            >
-              <a
-                class="nav-item nav-link active"
-                id="view-type-table-tab"
-                data-toggle="pill"
-                href="#view-type-table"
-                role="tab"
-                aria-controls="view-type-table"
-                aria-selected="true"
-              >
-                <i class="display-3 fas fa-table"></i><br />
-                Table
-              </a>
-              <a
-                class="nav-item nav-link"
-                id="view-type-pie-tab"
-                data-toggle="pill"
-                href="#view-type-pie"
-                role="tab"
-                aria-controls="view-type-pie"
-                aria-selected="true"
-              >
-                <i class="display-3 fas fa-chart-pie"></i><br />
-                Pie Chart
-              </a>
-              <a
-                class="nav-item nav-link"
-                id="view-type-histogram-tab"
-                data-toggle="pill"
-                href="#view-type-histogram"
-                role="tab"
-                aria-controls="view-type-histogram"
-                aria-selected="true"
-              >
-                <i class="display-3 fas fa-chart-bar"></i><br />
-                Histogram</a
-              >
-              <a
-                class="nav-item nav-link"
-                id="view-type-line-tab"
-                data-toggle="pill"
-                href="#view-type-line"
-                role="tab"
-                aria-controls="view-type-line"
-                aria-selected="true"
-              >
-                <i class="display-3 fas fa-chart-line"></i><br />
-                Line Graph
-              </a>
-            </nav>
+           
           </div>
           <!-- end sidebar-sticky -->
         </nav>
