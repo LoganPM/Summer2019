@@ -24,9 +24,6 @@
     <script src="./js/jquery.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
 
-    <!--Chart.js CDN-->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
-
     <!--DataTable CDN-->
     <link
       rel="stylesheet"
@@ -57,17 +54,9 @@
 </head>
   <body>
     <nav class="navbar bg-light navbar-expand-lg fixed-top shadow">
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNavAltMarkup"
-        aria-controls="navbarNavAltMarkup"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
+      <a class="navbar-brand p-0">GM's Best Friend</a>
+
+	  <!--home and faqs tabs-->
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <ul class="navbar-nav">
           <li class="nav-item active"><a class="nav-link" href="index.html">home</a></li>
@@ -78,16 +67,43 @@
     <!-- end main menu -->
 
     <div class="container-fluid">
-      <div class="row">
+      <!--Web app code starts here-->
+	  <div class="row">
         <nav class="col-md-2 d-none d-md-block bg-lightish sidebar">
           <div class="sidebar-sticky">
-            
+            <h4>Stats<h4>
+			  <form id="stats-form">
+				<div class="form-group">
+                  <div><label for="stats-hp">Health</label></div>
+                  <div class="text-box">
+                    <input type="text" id="stats-hp" class="form-control"></input>
+                  </div>
+                </div>
+				<div class="form-group">
+                  <div><label for="stats-init">Initiative</label></div>
+                  <div class="text-box">
+                    <input type="text" id="stats-init" class="form-control"></input>
+                  </div>
+                </div>
+				<div class="form-group">
+                  <div><label for="stats-ac">Armor Class</label></div>
+                  <div class="text-box">
+                    <input type="text" id="stats-ac" class="form-control"></input>
+                  </div>
+                </div>
+			  </form>
+			  <button
+				  id="clearBtn"
+				  class="btn btn-secondary"
+				  style = "width: 100%;"
+				  >Clear All
+			  </button>
           </div>
         </nav>
         <!-- end filter menu -->
 
         <main role="main" class="col-md-8 px-4">
-          <div class="tab-content" id="view-type-tabContent">
+		  <div class="tab-content" id="view-type-tabContent">
             <div
               class="tab-pane fade show active"
               id="view-type-table"
@@ -100,299 +116,26 @@
                 </div>
               </div>
               <!-- end table menu -->
-              <div id="sorting-options" class="collapse card text-white bg-secondary mb-2">
-                <div class="card-body">
-                  <form method="post" action="#">
-                    <div class="row">
-                      <div class="col-6">
-                        <h4 class="text-info">Show columns</h4>
-                        <div class="form-check">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            value=""
-                            id="table-show-all"
-                          />
-                          <label class="form-check-label" for="table-show-all">
-                            <strong>Select All</strong>
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            value=""
-                            id="table-show-fname"
-                          />
-                          <label class="form-check-label" for="table-show-fname"> Sector </label>
-                        </div>
-                        <div class="form-check">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            value=""
-                            id="table-show-salary"
-                          />
-                          <label class="form-check-label" for="table-show-salary"> Salary </label>
-                        </div>
-                        <div class="form-check">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            value=""
-                            id="table-show-employ"
-                          />
-                          <label class="form-check-label" for="table-show-employ"> Employer </label>
-                        </div>
-                        <div class="form-check">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            value=""
-                            id="table-show-fname"
-                          />
-                          <label class="form-check-label" for="table-show-fname">
-                            First Name
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            value=""
-                            id="table-show-lname"
-                          />
-                          <label class="form-check-label" for="table-show-lname"> Last Name </label>
-                        </div>
-                        <div class="form-check">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            value=""
-                            id="table-show-title"
-                          />
-                          <label class="form-check-label" for="table-show-title"> Job Title </label>
-                        </div>
-                        <div class="form-check">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            value=""
-                            id="table-show-tb"
-                          />
-                          <label class="form-check-label" for="table-show-tb">
-                            Taxable Benefits
-                          </label>
-                        </div>
-                      </div>
-                      <!-- end left form column -->
-                      <div class="col-6">
-                        <h4 class="text-info">Sort by</h4>
-                        <div class="input-group mb-2">
-                          <div class="input-group-prepend">
-                            <label class="input-group-text" for="table-sort-1">Year</label>
-                          </div>
-                          <select id="table-sort-1" class="form-control">
-                            <option>2013</option>
-                            <option>2012</option>
-                            <option>2011</option>
-                            <option>2010</option>
-                          </select>
-                        </div>
-                        <div class="input-group mb-2">
-                          <div class="input-group-prepend">
-                            <label class="input-group-text" for="table-sort-2">2</label>
-                          </div>
-                          <select id="table-sort-2" class="form-control">
-                            <option></option>
-                            <option>Sector</option>
-                            <option>Etc</option>
-                          </select>
-                        </div>
-                        <div class="input-group mb-2">
-                          <div class="input-group-prepend">
-                            <label class="input-group-text" for="table-sort-3">3</label>
-                          </div>
-                          <select id="table-sort-3" class="form-control">
-                            <option></option>
-                            <option>Sector</option>
-                            <option>Etc</option>
-                          </select>
-                        </div>
-                        <div class="input-group mb-2">
-                          <div class="input-group-prepend">
-                            <label class="input-group-text" for="table-sort-4">4</label>
-                          </div>
-                          <select id="table-sort-4" class="form-control">
-                            <option></option>
-                            <option>Sector</option>
-                            <option>Etc</option>
-                          </select>
-                        </div>
-                        <div class="input-group mb-2">
-                          <div class="input-group-prepend">
-                            <label class="input-group-text" for="table-sort-5">5</label>
-                          </div>
-                          <select id="table-sort-5" class="form-control">
-                            <option></option>
-                            <option>Sector</option>
-                            <option>Etc</option>
-                          </select>
-                        </div>
-                        <div class="input-group mb-2">
-                          <div class="input-group-prepend">
-                            <label class="input-group-text" for="table-sort-6">6</label>
-                          </div>
-                          <select id="table-sort-6" class="form-control">
-                            <option></option>
-                            <option>Sector</option>
-                            <option>Etc</option>
-                          </select>
-                        </div>
-                      </div>
-                      <!-- end right form column -->
-                    </div>
-                    <!-- end row -->
-                  </form>
-                </div>
-                <!-- end card-body -->
-                <div class="card-footer d-flex justify-content-between">
-                  <button class="btn btn-outline-light">Clear</button>
-                  <button id="update-button" class="btn btn-primary btn-lg">Update</button>
-                </div>
-              </div>
-              <!-- end sorting options .card -->
+             
 
               <!--Dynamically Generated DataTable-->
               <div style="margin-bottom: 100px;">
-                <div id="loader" class="text-center text-info pt-4">
-                    <div class="spinner-border" role="status">
-                      <span class="sr-only">Loading...</span>
-                    </div>
-                </div>
-                <table id="salary-table" class="table" style="text-align: center; width: 100%;">
-                  <thead id="salary-table-head">
+			    <div class="col-4" style="margin: auto;">
+                  <button
+                    id="addNewBtn"
+					class="btn btn-secondary"
+                    role="button"
+                    style="width: 100%;"
+                    >Add new combatant <i class="fas fa-cog"></i
+                  ></button>
+                <table id="main-table" class="table" style="text-align: center; width: 100%;">
+                  <thead id="table-head">
                     <!-- dynamically generated -->
                   </thead>
-                  <tbody id="salary-table-body">
+                  <tbody id="table-body">
                     <!-- dynamically generated -->
                   </tbody>
                 </table>
-              </div>
-            </div>
-            <div
-              class="tab-pane fade"
-              id="view-type-pie"
-              role="tabpanel"
-              aria-labelledby="view-type-pie-tab"
-            >
-              <!-- PIE CHART HTML GOES HERE -->
-              <div
-                id="pie-chart-title"
-                style="font-size: 20px; font-weight: bold; text-align: center;"
-              >
-                Number of Individuals Making Over 100k per Sector
-              </div>
-              <canvas id="pie-chart"></canvas>
-              <div style="display: flex; flex-direction: column;">
-                <div style="display: flex; justify-content: space-evenly;">
-                  <button
-                    id="pie-sector-button"
-                    class="btn btn-secondary"
-                    style="margin-top: 20px; width: 150px;"
-                  >
-                    Job Sector View
-                  </button>
-                  <button
-                    id="pie-employer-button"
-                    class="btn btn-secondary"
-                    style="margin-top: 20px; width: 150px;"
-                  >
-                    Job Employer View
-                  </button>
-                  <button
-                    id="pie-year-button"
-                    class="btn btn-secondary"
-                    style="margin-top: 20px; width: 150px;"
-                  >
-                    Year View
-                  </button>
-                  <button
-                    id="pie-salary-button"
-                    class="btn btn-secondary"
-                    style="margin-top: 20px; width: 150px;"
-                  >
-                    Salary View
-                  </button>
-                </div>
-                <div style="text-align: center; padding-top: 20px;">
-                  Note: Views work best with less than 20 sectors or employers
-                </div>
-              </div>
-            </div>
-            <div
-              class="tab-pane fade"
-              id="view-type-histogram"
-              role="tabpanel"
-              aria-labelledby="view-type-histogram-tab"
-            >
-              <!-- HISTOGRAM CHART HTML -->
-              <div
-                id="histo-chart-title"
-                style="font-size: 20px; font-weight: bold; text-align: center;"
-              >
-                Number of Individuals Making Over 100k per Sector
-              </div>
-              <canvas id="histogram-chart"></canvas>
-            </div>
-            <div
-              class="tab-pane fade"
-              id="view-type-line"
-              role="tabpanel"
-              aria-labelledby="view-type-line-tab"
-            >
-              <!-- LINE CHART HTML GOES HERE -->
-              <div
-                id="line-chart-title"
-                style="font-size: 20px; font-weight: bold; text-align: center;"
-              >
-                Aggregated Total Salaries Paid per Sector
-              </div>
-              <canvas id="line-chart"></canvas>
-              <div style="display: flex; flex-direction: column;">
-                <div style="display: flex; justify-content: space-evenly;">
-                  <button
-                    id="line-sector-button"
-                    class="btn btn-secondary"
-                    style="margin-top: 20px; width: 150px;"
-                  >
-                    Salary per Sector View
-                  </button>
-                  <!-- <button
-                    id="pie-employer-button"
-                    class="btn btn-secondary"
-                    style="margin-top: 20px; width: 150px;"
-                  >
-                    Job Employer View
-                  </button>
-                  <button
-                    id="pie-year-button"
-                    class="btn btn-secondary"
-                    style="margin-top: 20px; width: 150px;"
-                  >
-                    Year View
-                  </button>
-                  <button
-                    id="pie-salary-button"
-                    class="btn btn-secondary"
-                    style="margin-top: 20px; width: 150px;"
-                  >
-                    Salary View
-                  </button> -->
-                </div>
-                <div style="text-align: center; padding-top: 20px;">
-                  Note: Views work best with less than 20 sectors or employers
-                </div>
               </div>
             </div>
           </div>
@@ -410,7 +153,7 @@
     </div>
 
     <!-- SCRIPTS -->
-    <script src="./js/salaries.js"></script>
+    <script src="./js/drawTables.js"></script>
     <script src="/reload/reload.js"></script>
   </body>
 </html>
