@@ -1,6 +1,6 @@
 
 //Globals
-let tableData = [];
+let tableArray = [];
 let table = null;
 let tableCounter = 0;
 
@@ -16,6 +16,13 @@ const renderTable = () => {
   // reset table
   tableHead.innerHTML = '';
   tableBody.innerHTML = '';
+  // set headers
+  tableHead.innerHTML = `
+    <tr>
+        <th scope="col">Initative</th>
+        <th scope="col">HP</th>
+        <th scope="col">Armor Class</th>
+    </tr>`;
 };
 
 document.getElementById('addNewBtn').onclick = () => {
