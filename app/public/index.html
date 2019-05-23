@@ -80,25 +80,37 @@
           <div class="sidebar-sticky">
             <h4>Stats<h4>
 			  <form id="stats-form">
+			    <!--start of left column stat boxes, Name-->
+				<div class="form-group">
+				  <div><label for="stats-name">Name</label></div>
+				  <div class="text-box">
+				    <input type="text" id="stats-name" class="form-control"></input>
+				  </div>
+				</div>
+				<!--Health-->
 				<div class="form-group">
                   <div><label for="stats-hp">Health</label></div>
                   <div class="text-box">
                     <input type="text" id="stats-hp" class="form-control"></input>
                   </div>
                 </div>
+				<!--Initiative-->
 				<div class="form-group">
                   <div><label for="stats-init">Initiative</label></div>
                   <div class="text-box">
                     <input type="text" id="stats-init" class="form-control"></input>
                   </div>
                 </div>
+				<!--Armor Class-->
 				<div class="form-group">
                   <div><label for="stats-ac">Armor Class</label></div>
                   <div class="text-box">
                     <input type="text" id="stats-ac" class="form-control"></input>
                   </div>
                 </div>
+			  <!--end of form-->
 			  </form>
+			  <!--clear button-->
 			  <button
 				  id="clearBtn"
 				  class="btn btn-secondary"
@@ -132,29 +144,41 @@
                     id="addNewBtn"
 					class="btn btn-secondary"
                     role="button"
-                    style="width: 100%;"
-                    >Add new combatant <i class="fas fa-cog"></i
+                    style="width: 60%;"
+					style="length: 60%;"
+                    >Add new combatant<i class="fas fa-cog"></i
                   ></button>
-                <table id="main-table" class="table" style="text-align: center; width: 100%;">
-                  <thead id="table-head">
-                    <!-- dynamically generated -->
-                  </thead>
-                  <tbody id="table-body">
-                    <!-- dynamically generated -->
-                  </tbody>
-                </table>
-              </div>
+				</div>  
+                <div>
+				  <table id="main-table" class="table" style="text-align: center; width: 100%;">
+				    <thead id="table-head">
+				  	<!-- dynamically generated -->
+				    </thead>
+				    <tbody id="table-body">
+					<!-- dynamically generated -->
+				    </tbody>
+				  </table>
+                </div>
             </div>
           </div>
         </main>
 
         <nav class="col-md-2 d-none d-md-block bg-lightish sidebar">
           <div class="sidebar-sticky">
-           
-          </div>
-          <!-- end sidebar-sticky -->
-        </nav>
-        <!-- end right side menu -->
+            <div class="col-4" style="margin: auto;">
+                <!--adding a bit of white space between top border and button-->
+				<p></p>
+				<button
+                  id="clearTableBtn"
+			      class="btn btn-secondary"
+                  role="button"
+                  style="width: 100%;"
+			      style="length: 100%;"
+                  >Clear Table<i class="fas fa-cog"></i
+                ></button>
+			</div>
+          </div><!-- end sidebar-sticky -->
+        </nav><!-- end right side menu -->
       </div>
       <!-- end row -->
     </div>
