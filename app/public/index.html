@@ -16,10 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Site Metas -->
-    <title>GM's Best Friend</title>
-    <meta name="keywords" content="" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+    <title>Skirmishes & Statistics</title>
 
 	
     <!--JQuery and Bootstrap-->
@@ -61,7 +58,7 @@
 </head>
   <body>
     <nav class="navbar bg-light navbar-expand-lg fixed-top shadow">
-      <a class="navbar-brand p-0">GM's Best Friend</a>
+      <a class="navbar-nav" style="font-size: 24px">Skirmishes & Statistics</a>
 
 	  <!--home and faqs tabs-->
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -109,14 +106,23 @@
                   </div>
                 </div>
 			  <!--end of form-->
-			  </form>
+        </form>
+        
 			  <!--clear button-->
 			  <button
 				  id="clearBtn"
 				  class="btn btn-secondary"
 				  style = "width: 100%;"
 				  >Clear All
-			  </button>
+        </button>
+        <button
+          id="addNewBtn"
+          class="btn btn-secondary"
+          role="button"
+          style="width: 60%;"
+          style="length: 60%;"
+          >Add new combatant<i class="fas fa-cog"></i
+        ></button>
           </div>
         </nav>
         <!-- end filter menu -->
@@ -138,27 +144,17 @@
              
 
               <!--Dynamically Generated DataTable-->
-              <div style="margin-bottom: 100px;">
-			    <div class="col-4" style="margin: auto;">
-                  <button
-                    id="addNewBtn"
-					class="btn btn-secondary"
-                    role="button"
-                    style="width: 60%;"
-					style="length: 60%;"
-                    >Add new combatant<i class="fas fa-cog"></i
-                  ></button>
-				</div>  
-                <div>
-				  <table id="main-table" class="table" style="text-align: center; width: 100%;">
-				    <thead id="table-head">
-				  	<!-- dynamically generated -->
-				    </thead>
-				    <tbody id="table-body">
-					<!-- dynamically generated -->
-				    </tbody>
-				  </table>
-                </div>
+            <div style="margin-bottom: 100px;"> 
+              <div>
+                <table id="main-table" class="table" style="text-align: center; width: 100%;">
+                  <thead id="table-head">
+                  <!-- dynamically generated -->
+                  </thead>
+                  <tbody id="table-body">
+                <!-- dynamically generated -->
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </main>
