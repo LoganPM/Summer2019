@@ -18,7 +18,6 @@
     <!-- Site Metas -->
     <title>Skirmishes & Statistics</title>
 
-	
     <!--JQuery and Bootstrap-->
     <script
       type="text/javascript"
@@ -171,8 +170,14 @@
               <!--white space between top border and button-->
 				      <p style="padding-top: 40px;"></p>
               <!-- ADD DROP BOX HERE -->
-              <button>MAKE ME DROP MENU FOR SAVE GAMES<i class="fas fa-cog">
-              </i></button>
+              <div class="dropdown">
+                <button onclick="showDropDown();" class="dropbtn">Dropdown</button>
+                <div id="state-dropdown" class="dropdown-content">
+                  <a href="#">Link 1</a>
+                  <a href="#">Link 2</a>
+                  <a href="#">Link 3</a>
+                </div>
+              </div>
             </div>
             <!-- white space between save button and drop menu -->
             <p style="padding-top: 40px;"></p> 
