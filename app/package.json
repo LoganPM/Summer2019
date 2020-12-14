@@ -1,12 +1,12 @@
 {
-  "name": "cis3750",
+  "name": "cis4150",
   "version": "1.1.0",
-  "description": "Backend services for bubbleT salary application",
-  "author": "cis3750-group3",
+  "description": "Skirmishes & Statistics application",
+  "author": "Logan MacLeod",
   "license": "MIT",
   "scripts": {
     "postinstall": "npm rebuild",
-    "start": "nodemon app.js --ignore './src/data/*.json' -e js,html,css",
+    "start": "nodemon app.js --ignore -e js,html,css",
     "test": "nyc mocha --timeout=10000 --exit",
     "lint": "eslint \"**/*.js\"",
     "scss": "node-sass --watch scss/bootstrap_custom.scss -o public/"
