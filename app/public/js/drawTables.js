@@ -29,7 +29,7 @@ const renderTable = () => {
     const newRow = tableBody.insertRow(i);
     newRow.innerHTML = `
             <td>${combList[i].name}</td>
-			<td>${combList[i].init}</td>
+			      <td>${combList[i].init}</td>
             <td>${combList[i].HP}</td>
             <td>${combList[i].AC}</td>`;
   }

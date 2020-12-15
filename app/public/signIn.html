@@ -39,6 +39,11 @@
 
   <div class="container bg-light shadow">
       <main role="main" class="px-4 pb-4" id="signin-content">
+        <div id="table-menu" class="row mb-2">
+            <div class="col-8" id="alert-section">
+              <textarea name="alerts" id="alerts" cols="50" rows="1" disabled style="resize:none">Alerts</textarea>
+            </div>
+        </div>
         <h1>Sign in</h1>
         <div class="container">
             <label for="uname"><b>Username</b></label>
@@ -49,7 +54,7 @@
             <input type="text" id="pswrdSI" placeholder="Enter Password" name="passwrd" required>
         </div>
         <div>
-            <button type="submit" id="login_btn" class="btn btn-secondary">Login</button>
+            <button type="submit" id="login_btn" class="btn btn-secondary">Log in</button>
             <label>
                 <input type="checkbox" style="padding-left: 20px" checked="checked" name="remember"> Remember me
             </label>
@@ -73,10 +78,10 @@
           </div>
           <div class="container">
             <label for="confirm_passwrd" style= "padding-right: 70px"><b></b></label>
-            <input type="text" placeholder="Re-enter Password" name="confirmed_new_passwrd" required>
+            <input type="text" id="pwrdConSU" placeholder="Re-enter Password" name="confirmed_new_passwrd" required>
         </div>
           <div>
-            <button type="submit"  class="btn btn-secondary">Create Account</button>
+            <button type="submit"  id="createAcc_btn" class="btn btn-secondary">Create Account</button>
             <label>
                 <input type="checkbox" style="padding-left: 20px" checked="checked" name="remember"> Remember me
             </label>
