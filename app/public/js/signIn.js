@@ -23,7 +23,7 @@ document.getElementById('createAcc_btn').onclick = () => {
     let snackMsg = document.getElementById('snackbar');
 
     if (psswrd == "" || username == "" || psswrdCon == "") {
-        snackMsg.innerHTML = "Error! Can't create account, invalid username/password"
+        snackMsg.innerHTML = "Error! Can't create account, invalid username/password";
         snackMsg.className = "show";
         setTimeout(function(){ snackMsg.className = snackMsg.className.replace("show", ""); }, 3000);
     }

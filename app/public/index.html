@@ -114,7 +114,7 @@
           </div>
           <!--end of form-->
           </form>
-          <!-- add new combaton button -->
+          <!-- add new combatant button -->
           <button
             id="addNewBtn"
             class="btn btn-secondary"
@@ -135,56 +135,65 @@
       <!-- end filter menu -->
 
       <main role="main" class="col-md-8 px-4">
-		  <div class="tab-content" id="view-type-tabContent">
-            <!-- table menu -->
-            <div
-              class="tab-pane fade show active"
-              id="view-type-table"
-              role="tabpanel"
-              aria-labelledby="view-type-table-tab"
-            >
-              <div id="table-menu" class="row mb-2">
-                <!-- <div class="col-8" id="alert-section">
-                  <textarea name="alerts" id="alerts" cols="50" rows="1" disabled style="resize:none">Alerts</textarea>
-                </div> -->
+        <div class="tab-content" id="view-type-tabContent">
+              <!-- table menu -->
+              <div class="tab-pane fade show active" id="view-type-table" role="tabpanel" aria-labelledby="view-type-table-tab">
+                <div id="table-menu" class="row mb-2">
+                  <div class="col-8" id="alert-section">
+                    <textarea name="sessionTitle" id="sessTitle" cols="50" rows="1" style="resize:none">New Session</textarea>
+                  </div>
+                  <button
+                    id="PrevTurnBtn"
+                    class="btn btn-secondary"
+                    role="button"
+                    style="width: 10%;"
+                    >Previous Turn<i class="fas fa-cog"></i
+                  ></button>
+                  <p style="padding-right: 100px;"></p>
+                  <button
+                    id="NextTurnBtn"
+                    class="btn btn-secondary"
+                    role="button"
+                    style="width: 10%;"
+                    >Next Turn<i class="fas fa-cog"></i
+                  ></button>
+                </div>
+                <!--Dynamically Generated DataTable-->
+                <div style="margin-bottom: 100px;"> 
+                  <div>
+                    <table id="main-table" class="table" style="text-align: center; width: 100%;">
+                      <thead id="table-head">
+                      <!-- dynamically generated -->
+                      </thead>
+                      <tbody id="table-body">
+                    <!-- dynamically generated -->
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="container">
+                <p style="padding-top: 40px;"></p>
                 <button
-                  id="PrevTurnBtn"
+                    id="clearTableBtn"
+                    class="btn btn-secondary"
+                    role="button"
+                    style="width: 20%;"
+                    >Clear Table<i class="fas fa-cog">
+                </i></button>
+                <!-- <p style="padding: 5px;"></p> -->
+                <button
+                  id="sortTableBtn"
                   class="btn btn-secondary"
                   role="button"
-                  style="width: 10%;"
-                  >Previous Turn<i class="fas fa-cog"></i
-                ></button>
-                <p style="padding-right: 100px;"></p>
-                <button
-                  id="NextTurnBtn"
-                  class="btn btn-secondary"
-                  role="button"
-                  style="width: 10%;"
-                  >Next Turn<i class="fas fa-cog"></i
-                ></button>
+                  style="width: 20%;"
+                >Sort Table<i class="fas fa-cog; align-self:center">
+                </i></button>
               </div>
-              <!--Dynamically Generated DataTable-->
-            <div style="margin-bottom: 100px;"> 
-              <div>
-                <table id="main-table" class="table" style="text-align: center; width: 100%;">
-                  <thead id="table-head">
-                  <!-- dynamically generated -->
-                  </thead>
-                  <tbody id="table-body">
-                <!-- dynamically generated -->
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            </div>
-            <p style="padding-top: 40px;"></p>
-            <button
-                id="clearTableBtn"
-                class="btn btn-secondary"
-                role="button"
-                style="width: 20%;"
-                >Clear Table<i class="fas fa-cog">
-            </i></button>
+        </div>
+        <div class="container" id="snackmsg">
+          <div id="snackbar"></div>
+        </div>
       </main>
 
       <nav class="col-md-2 d-none d-md-block bg-lightish sidebar">
@@ -194,7 +203,7 @@
             <p style="padding-top: 40px;"></p>
             <!-- ADD DROP BOX HERE -->
             <div class="dropdown">
-              <button onclick="showDropDown();" class="dropbtn">Load Game</button>
+              <button onclick="showDropDown();" class="dropbtn">Load Session</button>
               <div id="state-dropdown" class="dropdown-content">
                 <a href="#">Tuesday Session</a>
                 <a href="#">Thursday Session</a>
@@ -202,34 +211,30 @@
               </div>
             </div>
           </div>
-          <!-- white space between save button and drop menu -->
-          <p style="padding-top: 40px;"></p> 
+          <p style="padding-bottom: 10px;"></p>
           <!-- SAVE BUTTON -->
           <div class="col-4" style="margin: auto;">
             <button
               id="saveState-btn"
               class="btn btn-secondary"
               role="button"
-              style="width: 100%;"
-              >Save Game<i class="fas fa-cog">
+              style="width: 128%;"
+              >Save Session<i class="fas fa-cog">
             </i></button>
           </div>
-          <!-- white space between 2 buttons -->
-          <p style="padding-top: 40px;"></p>
-          <!-- DELETE STATE BUTTON -->
-          <div class="col-4" style="margin: auto;">
-            <button
-              id="delState-btn"
-              class="btn btn-secondary"
-              role="button"
-              style="width: 100%;"
-              >Delete Game<i class="fas fa-cog">
-            </i></button>
-          </div>
+          <p style="padding-bottom: 40px;"></p>
           <div><label for="notes">DM Notes</label></div>
           <div>
             <textarea name="notes" id="notepad" cols="30" rows="15" style="resize:rows"></textarea>
           </div>
+          <p style="padding-bottom: 1in;"></p>
+          <button
+              id="delState-btn"
+              class="btn btn-secondary"
+              role="button"
+              style="width: 100%;"
+              >Delete Session<i class="fas fa-cog">
+            </i></button>
         </div><!-- end sidebar-sticky -->
       </nav><!-- end right side menu -->
       </div>

@@ -44,17 +44,25 @@ const renderTable = () => {
             <td>${combList[i].ac}</td>`;
   }
 };
+
+//EVENT HANDELER FOR SORT BUTTON
+document.getElementById('sortTableBtn').onclick = () => {
+  sortTable();
+  renderTable();
+}
+
 //SORTS THE TABLE
 function sortTable() {
   let len = combList.length - 1;
-  let swap;
-
+  let swapped;
+  
   do {
-    swap = false;
+    swapped = false;
     for(let i=0; i<len; i++) {
       if(combList[i].init < combList[i+1].init) {
         let temp = new newCombatant(" "," "," "," ");
-        //store combj
+        swapped = true;
+        //store combj in temp
         temp.name = combList[i].name;
         temp.hp = combList[i].hp;
         temp.init = combList[i].init;
@@ -62,60 +70,86 @@ function sortTable() {
         temp.inmod = combList[i].inmod;
         // swap combj with next element
         combList[i].name = combList[i+1].name;
-        combList[i].ac = combList[i+1].hp;
+        combList[i].hp = combList[i+1].hp;
         combList[i].init = combList[i+1].init;  
         combList[i].ac = combList[i+1].ac;
         combList[i].inmod = combList[i+1].inmod;
-        // set next element to combj
+        // set next element to temp
         combList[i+1].name = temp.name;
         combList[i+1].hp = temp.hp;
         combList[i+1].init = temp.init;
         combList[i+1].ac = temp.ac;
-        combList[i+1].inmod = twmp.inmod;
-        swap = true;
+        combList[i+1].inmod = temp.inmod;
       }
     }
     len--;
-  } while (swap);
+  } while (swapped);
+  return;
 }
 //ADD NEW ELEMENT TO TABLE BUTTON
 document.getElementById('addNewBtn').onclick = () => {
   // re-render table
   let name = document.getElementById('stats-name').value;
-  let hp = document.getElementById('stats-hp').value;
-  let init = document.getElementById('stats-init').value;
-  let ac = document.getElementById('stats-ac').value;
-  let inmod = document.getElementById('stats-inmod').value;
-  let newComb = new newCombatant(name,hp,ac,init,inmod);
+  let hpStr = document.getElementById('stats-hp').value;
+  let initStr = document.getElementById('stats-init').value;
+  let acStr = document.getElementById('stats-ac').value;
+  let inmodStr = document.getElementById('stats-inmod').value;
+  let newComb = null;
+  let init = parseInt(initStr);
+  let inmod = parseInt(inmodStr);
+  let ac = parseInt(acStr);
+  let hp = parseInt(hpStr);
+
+  if (Number.isInteger(init) != true || Number.isInteger(inmod) != true || Number.isInteger(ac) != true ||Number.isInteger(hp) != true) {
+    //message ints only for ac init inmod and hp
+    let snackMsg = document.getElementById('snackbar');
+    snackMsg.innerHTML = "Error! Please enter real numbers for AC, HP, INIT, AND INIT MODIFIER";
+    snackMsg.className = "show";
+    setTimeout(function(){ snackMsg.className = snackMsg.className.replace("show", ""); }, 3000);
+    return;
+  }
+  
+  newComb = new newCombatant(name,hp,ac,init,inmod);
   combList.push(newComb);
-  sortTable();
   renderTable();
 };
 
 //CLEAR TABLE
 document.getElementById('clearTableBtn').onclick = () => {
-  for(let i = 0; i< combList.length; i++){
-    combList[i].pop();
+  clearTable();
+}
+
+//clear table, function
+function clearTable() {
+  for(let i = 0; i < combList.length; i++){
+    combList.pop();
   }
+  combList.length = 0;
   console.log("Table cleared");
   renderTable();
 }
 
 //CLEAR STATS
 document.getElementById('clearBtn').onclick = () => {
+  clearTable();
+};
 
+// clears stats button
+function clearStats() {
   document.getElementById('stats-name').value = '';
   document.getElementById('stats-hp').value = '';
   document.getElementById('stats-init').value = '';
+  document.getElementById('stats-inmod').value = '';
   document.getElementById('stats-ac').value = '';
   
   console.log('Cleared');
-};
+  return;
+}
 // SHOWS DROPDOWN FOR SAVE GAMES
 function showDropDown(){
   document.getElementById('state-dropdown').classList.toggle("show");
 }
-//for dropdown menu
+//done to hide dropdown menu
 window.onclick = function(event) {
   if (!event.target.matches('.dropbtn')) {
     let dropdowns = document.getElementsByClassName("dropdown-content");
@@ -130,20 +164,31 @@ window.onclick = function(event) {
 }
 
 document.getElementById('PrevTurnBtn').onclick = () => {
-  rotateTable(0);
+  rotateTable("back");
 }
 
 document.getElementById('NextTurnBtn').onclick = () => {
-  rotateTable(1);
+  rotateTable("forwards");
 }
 
 function rotateTable(direction) {
-  if (direction == 1){
-    // go next
-    let temp  = new newCombatant("","","","");
-    temp.name = combList[0];
+  let len = combList.length;
+  let temp  = new newCombatant("","","","","");
+  
+  if (combList[0] == null|| combList[len-1] == null) {
+    return;
+  }
+
+  if (direction == "back") {
+    // go to previous turn
+    combList.unshift(combList.pop());
   }
   else {
-    //go back
+    //go next
+    temp = combList.shift();
+    combList.push(temp);
   }
+  renderTable();
+  return;
 }
+
