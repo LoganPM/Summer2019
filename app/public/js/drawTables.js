@@ -49,7 +49,7 @@ const renderTable = () => {
 document.getElementById('sortTableBtn').onclick = () => {
   sortTable();
   renderTable();
-}
+};
 
 //SORTS THE TABLE
 function sortTable() {
@@ -94,19 +94,45 @@ document.getElementById('addNewBtn').onclick = () => {
   let initStr = document.getElementById('stats-init').value;
   let acStr = document.getElementById('stats-ac').value;
   let inmodStr = document.getElementById('stats-inmod').value;
+  let snackMsg = document.getElementById('snackbar');
   let newComb = null;
   let init = parseInt(initStr);
   let inmod = parseInt(inmodStr);
   let ac = parseInt(acStr);
   let hp = parseInt(hpStr);
 
+  name.trim();
+  if (combList.length > 0 ) {
+    for (let i = 0; i < combList.length; i++) {
+      //search through array for existing names
+      if (combList[i].name === name) {
+        snackMsg.innerHTML = "Error! you cannot add a combatant with the same name as another";
+        snackMsg.className = "show";
+        setTimeout(function(){ snackMsg.className = snackMsg.className.replace("show", ""); }, 3000);
+        snackMsg.innerHTML = "Try numbering your combatants! ex \"Goblin1, Goblin2..\"";
+        snackMsg.className = "show";
+        setTimeout(function(){ snackMsg.className = snackMsg.className.replace("show", ""); }, 3000);
+        return;
+      }
+    }
+  }
+  if (name == "") {
+    snackMsg.innerHTML = "Error! A combatant's name cannot be blank";
+    snackMsg.className = "show";
+    setTimeout(function(){ snackMsg.className = snackMsg.className.replace("show", ""); }, 3000);
+    return
+  }
   if (Number.isInteger(init) != true || Number.isInteger(inmod) != true || Number.isInteger(ac) != true ||Number.isInteger(hp) != true) {
     //message ints only for ac init inmod and hp
-    let snackMsg = document.getElementById('snackbar');
     snackMsg.innerHTML = "Error! Please enter real numbers for AC, HP, INIT, AND INIT MODIFIER";
     snackMsg.className = "show";
     setTimeout(function(){ snackMsg.className = snackMsg.className.replace("show", ""); }, 3000);
     return;
+  }
+  if (hp <= 0 || ac <= 0) {
+    snackMsg.innerHTML = "Error! you cannot add a combatant with an HP/AC total of 0 or lower";
+    snackMsg.className = "show";
+    setTimeout(function(){ snackMsg.className = snackMsg.className.replace("show", ""); }, 3000);
   }
   
   newComb = new newCombatant(name,hp,ac,init,inmod);
@@ -117,7 +143,7 @@ document.getElementById('addNewBtn').onclick = () => {
 //CLEAR TABLE
 document.getElementById('clearTableBtn').onclick = () => {
   clearTable();
-}
+};
 
 //clear table, function
 function clearTable() {
@@ -125,30 +151,28 @@ function clearTable() {
     combList.pop();
   }
   combList.length = 0;
-  console.log("Table cleared");
   renderTable();
-}
+};
 
 //CLEAR STATS
 document.getElementById('clearBtn').onclick = () => {
-  clearTable();
+  clearStats();
 };
 
 // clears stats button
 function clearStats() {
-  document.getElementById('stats-name').value = '';
-  document.getElementById('stats-hp').value = '';
-  document.getElementById('stats-init').value = '';
-  document.getElementById('stats-inmod').value = '';
-  document.getElementById('stats-ac').value = '';
-  
-  console.log('Cleared');
+  document.getElementById('stats-name').value = "";
+  document.getElementById('stats-hp').value = "";
+  document.getElementById('stats-init').value = "";
+  document.getElementById('stats-inmod').value = "";
+  document.getElementById('stats-ac').value = "";
   return;
 }
 // SHOWS DROPDOWN FOR SAVE GAMES
 function showDropDown(){
   document.getElementById('state-dropdown').classList.toggle("show");
-}
+};
+
 //done to hide dropdown menu
 window.onclick = function(event) {
   if (!event.target.matches('.dropbtn')) {
@@ -161,15 +185,15 @@ window.onclick = function(event) {
       }
     }
   }
-}
+};
 
 document.getElementById('PrevTurnBtn').onclick = () => {
   rotateTable("back");
-}
+};
 
 document.getElementById('NextTurnBtn').onclick = () => {
   rotateTable("forwards");
-}
+};
 
 function rotateTable(direction) {
   let len = combList.length;
@@ -211,7 +235,7 @@ document.getElementById('tuesSess').onclick = () => {
   snackMsg.innerHTML = "\"Tuesday Session\" loaded!";
   snackMsg.className = "show";
   setTimeout(function(){ snackMsg.className = snackMsg.className.replace("show", ""); }, 3000);
-}
+};
 
 document.getElementById('saveState-btn').onclick = () => { 
   let snackMsg = document.getElementById('snackbar');
@@ -225,7 +249,7 @@ document.getElementById('saveState-btn').onclick = () => {
   snackMsg.innerHTML = "Session saved!";
   snackMsg.className = "show";
   setTimeout(function(){ snackMsg.className = snackMsg.className.replace("show", ""); }, 3000);
-}
+};
 
 document.getElementById('delState-btn').onclick = () => {
   let snackMsg = document.getElementById('snackbar');
@@ -239,10 +263,49 @@ document.getElementById('delState-btn').onclick = () => {
   snackMsg.innerHTML = "Session Deleted!";
   snackMsg.className = "show";
   setTimeout(function(){ snackMsg.className = snackMsg.className.replace("show", ""); }, 3000);
-}
+};
 
 document.getElementById('createState-btn').onclick = () => {
   clearTable();
   let stateTitle = document.getElementById('sessTitle');
   stateTitle.value = "New Session";
-}
+};
+
+document.getElementById('updateBtn').onclick = () => {
+  let nameTBF = document.getElementById('stats-name').value;
+  let hpStr = document.getElementById('stats-hp').value;
+  let snackMsg = document.getElementById('snackbar');
+  let hpTBU;
+  let found = false;
+  
+  hpStr.trim();
+  hpTBU = parseInt(hpStr);
+  nameTBF.trim();
+  if (nameTBF == "" || hpStr == "") {
+    snackMsg.innerHTML = "When updating a combatant please enter the name and hp total.";
+    snackMsg.className = "show";
+    setTimeout(function(){ snackMsg.className = snackMsg.className.replace("show", ""); }, 3000);
+    return;
+  }
+  for (let i = 0; i < combList.length; i++) {
+    if (combList[i].name === nameTBF) {
+      if (hpTBU == 0) {
+        if (combList.length == 1) {
+          clearTable();
+        }
+        combList.splice(i,1);
+      }
+      else{ 
+        combList[i].hp = hpTBU;
+      }
+      found = true;
+    }
+  }
+  if (!found) {
+      snackMsg.innerHTML = "Character not found! Make sure the name is case sensitive.";
+      snackMsg.className = "show";
+      setTimeout(function(){ snackMsg.className = snackMsg.className.replace("show", ""); }, 3000);
+      return;
+  }
+  renderTable();
+};

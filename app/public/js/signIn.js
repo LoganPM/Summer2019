@@ -39,3 +39,16 @@ document.getElementById('createAcc_btn').onclick = () => {
     }
 }
 
+document.getElementById('createAccLink').onclick = () => {
+    let siDiv = document.getElementById('signInDiv');
+    let caDiv = document.getElementById('createAccDiv');
+    siDiv.style = "display:none;";
+    caDiv.style = "display:show;";
+}
+
+document.getElementById('signInLink').onclick = () => {
+    let siDiv = document.getElementById('signInDiv');
+    let caDiv = document.getElementById('createAccDiv');
+    siDiv.style = "display:show;";
+    caDiv.style = "display:none;";
+}

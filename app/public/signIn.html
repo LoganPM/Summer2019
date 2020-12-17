@@ -37,7 +37,7 @@
         </div>
       </nav>
 
-  <div class="container bg-light shadow">
+  <div id="signInDiv"class="container bg-light shadow;" style="display:show;">
       <main role="main" class="px-4 pb-4" id="signin-content">
         <div id="table-menu" class="row mb-2">
             <!-- <div class="col-8" id="alert-section">
@@ -62,10 +62,14 @@
         <div class="container">
             <span class="psw" >Forgot <a href="#">password?</a></span>
         </div>
+        <p style="padding-left: 20px"></p>
+        <div class="container">
+          <span class="psw" >New here? <a href="#" id="createAccLink">create an account</a></span>
+        </div>
       </main>
     </div>
-
-    <div class="container bg-light shadow">
+    <!-- container bg-light shadow; -->
+    <div id="createAccDiv"class="container bg-light shadow;" style="display:none;"> 
         <main role="main" class="px-4 pb-4" id="signup-content">
           <h1>New here? Create an account!</h1>
           <div class="container">
@@ -87,12 +91,14 @@
             </label>
           </div>
         </main>
-          <!-- SNACK MESSAGES -->
-        <div class="container" id="snackmsg">
-          <div id="snackbar"></div>
+        <div class="container">
+          <span class="psw" >Have an account? <a href="#" id="signInLink">Sign in here</a></span>
         </div>
       </div>
-  
+      <!-- SNACK MESSAGES -->
+      <div class="container" id="snackmsg">
+        <div id="snackbar"></div>
+      </div>
     </footer>
   <script src="./js/jquery.min.js"></script>
   <script src="./js/bootstrap.min.js"></script>
