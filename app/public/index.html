@@ -205,9 +205,9 @@
             <div class="dropdown">
               <button onclick="showDropDown();" class="dropbtn">Load Session</button>
               <div id="state-dropdown" class="dropdown-content">
-                <a href="#">Tuesday Session</a>
+                <a href="#" id="tuesSess">Tuesday Session</a>
                 <a href="#">Thursday Session</a>
-                <a href="#">Firday Session</a>
+                <a href="#">Friday Session</a>
               </div>
             </div>
           </div>
@@ -221,8 +221,16 @@
               style="width: 128%;"
               >Save Session<i class="fas fa-cog">
             </i></button>
+            <p style="padding-bottom: 10px;"></p>
+            <button
+              id="saveState-btn"
+              class="btn btn-secondary"
+              role="button"
+              style="width: 128%;"
+              >New Session<i class="fas fa-cog">
+            </i></button>
           </div>
-          <p style="padding-bottom: 40px;"></p>
+          <!-- <p style="padding-bottom: 10px;"></p> -->
           <div><label for="notes">DM Notes</label></div>
           <div>
             <textarea name="notes" id="notepad" cols="30" rows="15" style="resize:rows"></textarea>

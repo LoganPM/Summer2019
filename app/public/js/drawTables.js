@@ -192,3 +192,51 @@ function rotateTable(direction) {
   return;
 }
 
+document.getElementById('tuesSess').onclick = () => {
+  //name, hp, ac, init, init mod
+  let tChar1 = new newCombatant("Goblin", 7, 15, 15, 2);
+  let tChar2 = new newCombatant("Joe the Rogue", 54, 16, 14, 5);
+  let tChar3 = new newCombatant("Patty the Paladin", 76, 21, 12, -1);
+  let tChar4 = new newCombatant("Goblin 2", 7, 15, 3, 2);
+  let tChar5 = new newCombatant("Goblin 3", 7, 15, 2, 1);
+  let snackMsg = document.getElementById('snackbar');
+
+  clearTable();
+  combList.push(tChar5);
+  combList.push(tChar1);
+  combList.push(tChar2);
+  combList.push(tChar3);
+  combList.push(tChar4);
+  renderTable();
+  snackMsg.innerHTML = "\"Tuesday Session\" loaded!";
+  snackMsg.className = "show";
+  setTimeout(function(){ snackMsg.className = snackMsg.className.replace("show", ""); }, 3000);
+}
+
+document.getElementById('saveState-btn').onclick = () => { 
+  let snackMsg = document.getElementById('snackbar');
+  let dropdown = document.getElementById('state-dropdown');
+  let newState = document.getElementById('sessTitle').value;
+  dropdown.innerHTML = `                
+    <a href="#" id="tuesSess">Tuesday Session</a>
+    <a href="#">Thursday Session</a>
+    <a href="#">Firday Session</a>
+    <a href="#">${newState}</a>`;
+  snackMsg.innerHTML = "Session saved!";
+  snackMsg.className = "show";
+  setTimeout(function(){ snackMsg.className = snackMsg.className.replace("show", ""); }, 3000);
+}
+
+document.getElementById('delState-btn').onclick = () => {
+  let snackMsg = document.getElementById('snackbar');
+  let dropdown = document.getElementById('state-dropdown');
+  let newState = document.getElementById('sessTitle').value;
+  newState.value = "New Session";
+  dropdown.innerHTML = `                
+    <a href="#" id="tuesSess">Tuesday Session</a>
+    <a href="#">Thursday Session</a>
+    <a href="#">Firday Session</a>`;
+  snackMsg.innerHTML = "Session Deleted!";
+  snackMsg.className = "show";
+  setTimeout(function(){ snackMsg.className = snackMsg.className.replace("show", ""); }, 3000);
+} 
