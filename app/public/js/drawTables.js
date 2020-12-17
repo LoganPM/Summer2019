@@ -239,4 +239,10 @@ document.getElementById('delState-btn').onclick = () => {
   snackMsg.innerHTML = "Session Deleted!";
   snackMsg.className = "show";
   setTimeout(function(){ snackMsg.className = snackMsg.className.replace("show", ""); }, 3000);
-} 
+}
+
+document.getElementById('createState-btn').onclick = () => {
+  clearTable();
+  let stateTitle = document.getElementById('sessTitle');
+  stateTitle.value = "New Session";
+}
