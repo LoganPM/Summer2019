@@ -259,7 +259,7 @@ document.getElementById('delState-btn').onclick = () => {
   dropdown.innerHTML = `                
     <a href="#" id="tuesSess">Tuesday Session</a>
     <a href="#">Thursday Session</a>
-    <a href="#">Firday Session</a>`;
+    <a href="#">Friday Session</a>`;
   snackMsg.innerHTML = "Session Deleted!";
   snackMsg.className = "show";
   setTimeout(function(){ snackMsg.className = snackMsg.className.replace("show", ""); }, 3000);
